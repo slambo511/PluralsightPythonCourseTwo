@@ -91,6 +91,55 @@ def example_function_declared(student_name, student_id=223):
 
 # So, notice that we have swapped the arguments around, this is because "default" arguments (declared ones) must go last
 # As a side note, the function name and any arguments it takes are as a unit is known as the method's "signature"
-# Be aware that if you try to pass a student_id into example_function_declared() you will receive an error.
+# Be aware that if you try to pass a student_id into example_function_declared() you will override the default value and
+# student_id will become whatever you pass in
+
+# So note that the student_id is never really used in any meaningful way, let's change that:
 
 
+def add_new_student(student_name, student_id):
+    student = {"student_name": student_name, "student_id": student_id}
+    students.append(student)
+
+# Now we create a dictionary called student, pass in the name and id and add it to the students list.
+# For clarity you can call a method and pass in the parameters expressly:
+
+add_new_student(student_name="Bob A. Job", student_id=556)
+
+# This approach can make your code much more readable and your intent much clearer. Yes, we do not want to write
+# unnecessary code but at the same time we do not want our code to be unreadable and unintelligible either, not when it
+# is being developed, anyway.
+
+# So, moving on a bit, what happens when you have a function but the number of arguments / parameters is either unknown
+# or changeable. Well then we can tell the method that there may be any number of arguments passed in. The print()
+# function behaves like this, don't believe me? Well try running thise code:
+
+print("Hello", "World", 0, None, True, "1000000", 1.25648)
+
+# Eh? Well the print() function can handle any amount of arguments you throw at it (as long as they fit the criteria the
+# function defines, of course). So let's try writing our own to see how this works, shall we?
+
+print("\n\n")
+def variable_arguments(*args):
+    for arg in args:
+        print(arg)
+
+variable_arguments("Hello", "World", 0, None, True, "1000000", 1.25648)
+
+# Just another tid-bit, normally in Python a function can have 0xFF arguments (255 or 2 bytes worth) as a maximum,
+# whereas a function using args can have as many as it likes because they are passed as a list and fed in as needed.
+
+# What about defining what these things are though? Well now we can examine kwargs (KeyWord ARGS). They work like args
+# but instead of a list of arguments you get a dictionary of arguments containing the argument type and its content:
+
+
+def variable_kw_arguments(**kwargs):
+    print(kwargs)
+    print(kwargs["greeting"], kwargs["addendum"], kwargs["number"], kwargs["allowed_amount"], kwargs["is_valid"],
+          kwargs["word_amount"], kwargs["floating_point"])
+
+variable_kw_arguments(greeting="Hello", addendum="World", number=0, allowed_amount=None, is_valid=True,
+                      word_amount="1000000", floating_point=1.25648)
+
+# Ta da, not only as many arguments as you like but complete arguments, not just meaningless, unclear arguments.
+# Note how we can reference each particular argument by putting the name (key) in square brackets and speech marks [""]
