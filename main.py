@@ -63,6 +63,7 @@ def add_student(name):
 
 # So what about a function that needs parameters and returns something? Well:
 
+
 def add_together(number_one, number_two):
     result = number_one + number_two
     return result
@@ -72,4 +73,24 @@ def add_together(number_one, number_two):
 print(add_together(3, 4))
 
 # Out pops 7, the sum of 3 and 4.
+# Function arguments (the bits in the parentheses) can be passed in externally or manually entered at the time of
+# writing the function:
+
+
+def example_function_external(student_id, student_name):
+    students.append(student_name)
+    students.id = student_id
+
+# To use this function you will need to pass both a student_id and a student_name, you can however declare them at code
+# time:
+
+
+def example_function_declared(student_name, student_id=223):
+    students.append(student_name)
+    students.id = student_id
+
+# So, notice that we have swapped the arguments around, this is because "default" arguments (declared ones) must go last
+# As a side note, the function name and any arguments it takes are as a unit is known as the method's "signature"
+# Be aware that if you try to pass a student_id into example_function_declared() you will receive an error.
+
 
